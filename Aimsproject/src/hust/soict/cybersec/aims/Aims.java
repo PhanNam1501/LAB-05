@@ -1,19 +1,31 @@
+ 
 package hust.soict.cybersec.aims;
 
 import java.util.Collections;
 import java.util.Scanner;
 
+import javax.naming.LimitExceededException;
+import javax.swing.JFrame;
+
 import hust.soict.cybersec.aims.store.Store;
 import hust.soict.cybersec.aims.cart.Cart;
+import hust.soict.cybersec.aims.exception.PlayerException;
 import hust.soict.cybersec.aims.media.*;
+import hust.soict.cybersec.aims.screen.CartScreen;
 
 
-public class Aims {
+public class Aims { 
 	private static Store store = new Store();
 	private static Cart cart = new Cart();
 	private static Scanner sc = new Scanner(System.in);
+	private CartScreen cartscreen;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LimitExceededException, PlayerException {
+		new CartScreen(cart, store);
+		CartScreen cartScreen = new CartScreen(new Cart(), new Store());
+		cartScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		cartScreen.setSize(1024, 768);
+		cartScreen.setVisible(true);
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", 
 				"Animation", "Roger Allers", 87, 19.95f);
 		store.addMedia(dvd1);
@@ -28,9 +40,10 @@ public class Aims {
 		
 		showMenu();
 		
+		
 	}
 		
-	public static void showMenu() {
+	public static void showMenu() throws LimitExceededException, PlayerException {
 		System.out.println("AIMS: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. View store");
@@ -55,7 +68,7 @@ public class Aims {
 		
 	}
 	
-	public static void storeMenuOpt1() {
+	public static void storeMenuOpt1() throws LimitExceededException, PlayerException {
 		System.out.println("Enter the title of the media: ");
 		String mediaName = sc.nextLine();
 		mediaName = sc.nextLine();
@@ -73,7 +86,7 @@ public class Aims {
 		}
 	}
 	
-	public static void storeMenuOpt2() {
+	public static void storeMenuOpt2() throws LimitExceededException, PlayerException {
 		System.out.println("Enter the title of the media: ");
 		String mediaName = sc.nextLine();
 		mediaName = sc.nextLine();
@@ -91,7 +104,7 @@ public class Aims {
 		storeMenu();
 	}
 	
-	public static void storeMenuOpt3() {
+	public static void storeMenuOpt3() throws LimitExceededException, PlayerException {
 		System.out.println("Enter the title of the media: ");
 		String mediaName = sc.nextLine();
 		mediaName = sc.nextLine();
@@ -116,7 +129,7 @@ public class Aims {
 		storeMenu();
 	}
 	
-	public static void storeMenu() {
+	public static void storeMenu() throws LimitExceededException, PlayerException {
 		store.print();
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
@@ -146,7 +159,7 @@ public class Aims {
 	}
 	
 	
-	public static void mediaDetailsMenu(Media media) {
+	public static void mediaDetailsMenu(Media media) throws LimitExceededException, PlayerException {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. Add to cart");
@@ -175,7 +188,7 @@ public class Aims {
 		}
 	}
 	
-	public static void cartMenuOpt1() {
+	public static void cartMenuOpt1() throws LimitExceededException, PlayerException {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. Filter by id");
@@ -199,7 +212,7 @@ public class Aims {
 		}
 	}
 	
-	public static void cartMenuOpt2() {
+	public static void cartMenuOpt2() throws LimitExceededException, PlayerException {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. Sort by title");
@@ -220,7 +233,7 @@ public class Aims {
 		}
 	}
 	
-	public static void cartMenuOpt3() {
+	public static void cartMenuOpt3() throws LimitExceededException, PlayerException {
 		System.out.println("Enter the title of the media: ");
 		String mediaName = sc.nextLine();
 		mediaName = sc.nextLine();
@@ -237,7 +250,7 @@ public class Aims {
 		cartMenu();
 	}
 	
-	public static void cartMenuOpt4() {
+	public static void cartMenuOpt4() throws LimitExceededException, PlayerException {
 		System.out.println("Enter the title of the media: ");
 		String mediaName = sc.nextLine();
 		mediaName = sc.nextLine();
@@ -262,7 +275,7 @@ public class Aims {
 		cartMenu();
 	}
 	
-	public static void cartMenu() {
+	public static void cartMenu() throws LimitExceededException, PlayerException {
 		cart.print();
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
@@ -292,7 +305,7 @@ public class Aims {
 		}
 	}
 	
-	public static void updateStoreOpt1() {
+	public static void updateStoreOpt1() throws LimitExceededException, PlayerException {
 		System.out.println("Enter the title of the media: ");
 		String title = sc.nextLine();
 		title = sc.nextLine();
@@ -320,7 +333,7 @@ public class Aims {
 		updateStore();
 	}
 	
-	public static void updateStoreOpt2() {
+	public static void updateStoreOpt2() throws LimitExceededException, PlayerException {
 		System.out.println("Enter the title of the media: ");
 		String mediaName = sc.nextLine();
 		mediaName = sc.nextLine();
@@ -337,7 +350,7 @@ public class Aims {
 		updateStore();
 	}
 	
-	public static void updateStore() {
+	public static void updateStore() throws LimitExceededException, PlayerException {
 		System.out.println("Options: ");
 		System.out.println("--------------------------------");
 		System.out.println("1. Add a media to store");

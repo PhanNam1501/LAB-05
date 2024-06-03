@@ -14,13 +14,15 @@ public class Store {
 	public int getNumMedia() {
 		return numMedia;
 	}
-	public void addMedia(Media media) {
+	public boolean addMedia(Media media) {
 		if (itemsInStore.contains(media)) {
 			System.out.println("The media " + media.getTitle() +  " is already in store");
+			return false;
 		} else {
 			itemsInStore.add(media);
 			numMedia++;
 			System.out.println("Successfully added " + media.getTitle() + " to store");
+			return true;
 		}
 	}
 		

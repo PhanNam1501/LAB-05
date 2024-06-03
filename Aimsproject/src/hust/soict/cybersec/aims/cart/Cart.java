@@ -2,18 +2,22 @@ package hust.soict.cybersec.aims.cart;
 
 import hust.soict.cybersec.aims.media.DigitalVideoDisc;
 import hust.soict.cybersec.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import hust.soict.cybersec.aims.media.Book;
 import hust.soict.cybersec.aims.media.CompactDisc;
 
 import java.util.ArrayList;
 
+import javax.naming.LimitExceededException;
+
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 20;
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
-	public ArrayList<Media> getItemsOrdered(){
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList(); 
+	public ObservableList<Media> getItemsOrdered(){
 		return this.itemsOrdered;
 	}
-	public void addMedia(Media media) {
+	public void addMedia(Media media) throws LimitExceededException {
 		if (itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
 			if (itemsOrdered.contains(media)) {
 				System.out.println("The media " + media.getTitle() + " is already in cart");
@@ -22,7 +26,8 @@ public class Cart {
 				System.out.println("Successfully added " + media.getTitle() + " to cart");
 			}
 		} else {
-			System.out.println("Cart is already full");
+			throw new LimitExceededException("ERROR: The number of " 
+					+ "media has reached its limit");
 		}
 	}
 

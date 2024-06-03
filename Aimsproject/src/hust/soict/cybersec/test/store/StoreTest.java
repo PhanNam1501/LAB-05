@@ -8,22 +8,22 @@ public class StoreTest {
 		Store store = new Store();
 		
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 85, 19.95f);
-		store.addDVD(dvd1);
+		store.addMedia(dvd1);
 		
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
-		store.addDVD(dvd2);
+		store.addMedia(dvd2);
 		
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
-		store.addDVD(dvd3);
+		store.addMedia(dvd3);
 		
 		
-		System.out.println(store.getDVDAtIndex(0).toString());
-		System.out.println(store.getDVDAtIndex(1).toString());
-		System.out.println(store.getDVDAtIndex(2).toString());
+		System.out.println(store.getItemsInStore().get(0).toString());
+		System.out.println(store.getItemsInStore().get(1).toString());
+		System.out.println(store.getItemsInStore().get(2).toString());
 		
-		store.removeDVD(dvd2);
+		store.removeMedia(dvd2);
 		
-		System.out.println(store.getDVDAtIndex(0).toString());
-		System.out.println(store.getDVDAtIndex(1).toString());
+		System.out.println(store.getItemsInStore().get(0).toString());
+		System.out.println(store.getItemsInStore().get(1).toString());
 	}
 }

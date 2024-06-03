@@ -9,11 +9,33 @@ public class Media {
    private String category;
    private float cost;
    
+   
    public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
    public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
 
 
-
+   @Override
+   public boolean equals(Object obj) {
+       if (this == obj) {
+           return true;
+       }
+       if (obj == null) {
+           return false;
+       }
+       if (!(obj instanceof Media)) {
+           return false;
+       }
+       Media other = (Media) obj;
+       if (this.title == null) {
+           if (other.title != null) {
+               return false;
+           }
+       } else if (!this.title.equals(other.title)) {
+           return false;
+       }
+       return true;
+   }
+   
    public int getId() {
       return id;
    }
@@ -63,15 +85,14 @@ public class Media {
       this.cost = cost;
       this.category = category;
    }
-   public boolean equals(Object obj) {
-		if (obj instanceof Media) {
-			Media media = (Media) obj;
-			if (this.title == media.getTitle()) {
-				return true;
-			}
-		}
-		return false;	
-	}
+   
+   public Media(String title, String category, float cost, int i) {
+	  this.id = id;
+	  this.title = title;
+	  this.cost = cost;
+	  this.category = category;
+}
+  
 
 
 }
